@@ -1,3 +1,6 @@
+from termcolor import colored
+
+
 def main():
     joltage = 0
     with open("input.txt", "r") as file:
@@ -19,25 +22,30 @@ def main():
                     window = battery[left_bound : curr_index + 1]
                     best = max(window)
                     pos = left_bound + window.index(best)
-                    left_bound = pos + 1
+                    left_bound = pos + 1  # plus 1 to exclude the left bound
                     digits[i] = best
-                    # print(digits[i])
+                    # print(digits[i)
                     # left bound is the index of the last digit + 1
                     # the right bound includes the current digits
                     # index so it can get the max incase its already max
                     curr_index += 1
                 return digits
 
-            digs = get_12(battery)
+            digis = get_12(battery)
 
             # digits is the list and when joined will be the jolts
-            jolts = int("".join(str(num) for num in digs))
+            jolts = int("".join(str(num) for num in digis))
 
             joltage += jolts
 
             print(
-                f"Battery: {''.join(str(num) for num in battery)} | Jolts for this Battery: {jolts}"
+                colored(
+                    f"Battery: {''.join(str(num) for num in battery)}",
+                    "white",
+                    "on_green",
+                )
             )
+            print(colored(f"Jolts for this Battery: {jolts}", "white", "on_red"))
 
     print(f"Total Joltage: {joltage}")
 
