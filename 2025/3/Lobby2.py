@@ -1,4 +1,5 @@
 from termcolor import colored
+import time
 
 
 def main():
@@ -50,4 +51,9 @@ def main():
     print(f"Total Joltage: {joltage}")
 
 
+start_time = time.perf_counter()
 main()
+end_time = time.perf_counter()
+
+elapsed_time_ms = (end_time - start_time) * 1000
+print(f"my_function executed in {elapsed_time_ms:.2f} ms")
