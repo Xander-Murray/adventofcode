@@ -33,14 +33,10 @@ def count_timelines(start, grid):
 
         ch = grid[i][j]
 
-        if ch == "^":
-            # split into left and right timelines
-            res = paths(i, j - 1) + paths(i, j + 1)
-        else:
-            # fall straight down
-            res = paths(i + 1, j)
+        memo[(i, j)] = res = (
+            (paths(i, j - 1) + paths(i, j + 1)) if ch == "^" else paths(i + 1, j)
+        )
 
-        memo[(i, j)] = res
         return res
 
     return paths(start[0], start[1])
